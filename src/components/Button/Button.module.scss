@@ -1,0 +1,41 @@
+@use '../../styles' as *;
+
+.button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.small {
+    width: 11.313rem;
+    height: 4rem;
+}
+
+.large {
+    width: rem(210);
+    height: rem(74);
+}
+
+.medium {
+    width: 12.563rem;
+    height: 4rem;
+}
+
+.secondary {
+    background-color: $action200;
+    color: $whiteColor;
+    font-size: 1.482rem;
+    font-weight: 500;
+}
+
+.upload {
+    background-color: $backwardColor;
+    color: $textGrey-400-Color;
+    font-size: 1.482rem;
+}
+
+.primary {
+    background-color: $action100;
+    color: $whiteColor; 
+    font-size: rem(21.73);
+}

@@ -1,0 +1,13 @@
+@use '../../styles' as *;
+
+.wrapper {
+    width: rem(1705);
+    display: flex;
+    justify-content: start;
+    background-color: $backgroundColor;
+}
+
+.heroImg {
+    width: rem(480);
+}
+

@@ -1,0 +1,21 @@
+@use '../../styles' as *;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 281.5px; //17.594rem;
+    height: 228px;
+    border: 2px solid $borderLightColor;
+    border-radius: 5px;
+    padding-bottom: 40.4px;
+    font-weight: 500;
+    font-size: 23.71;
+    color: $textGrey-500-Color;
+    position: relative;
+
+    &_image {
+        margin-top: 54px;
+    }
+}
