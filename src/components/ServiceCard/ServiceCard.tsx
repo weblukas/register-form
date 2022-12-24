@@ -1,11 +1,10 @@
-import React, {ReactNode, FC} from 'react';
+import React, { ReactNode, FC } from 'react';
 import style from './Card.module.scss';
-
 
 interface IServiceCard {
     image: string;
     title: string;
-    children: ReactNode
+    children: ReactNode;
 }
 
 const ServiceCard: FC<IServiceCard> = ({ image, title, children }) => {
