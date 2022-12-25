@@ -1,3 +1,14 @@
+:root {
+    font-family: Jost, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     box-sizing: border-box;
     font-size: 100%;
@@ -9,9 +20,7 @@ html {
     box-sizing: inherit;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    place-content: center;
-}
+// body {
+//     display: grid;
+//     place-content: center;
+// }

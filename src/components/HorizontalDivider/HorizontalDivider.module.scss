@@ -1,0 +1,7 @@
+@use '../../styles' as *;
+
+.divider {
+    background-color: $borderDarkColor;
+    height: 2px;
+    width: 100%;
+}

@@ -6,14 +6,19 @@ interface IButton {
     size: string;
     variant: string;
     children: React.ReactNode;
+    className?: string;
     handleClick: () => void;
 }
 
-const Button: FC<IButton> = ({ handleClick, children, size, variant }) => {
+const Button: FC<IButton> = ({ handleClick, children, size, variant, className }) => {
     return (
         <button
             type="submit"
-            className={cn(style.button, style[size], style[variant])}
+            className={cn(
+                style.button, 
+                style[size], 
+                style[variant], 
+                className)}
             onClick={handleClick}
         >
             {children}
