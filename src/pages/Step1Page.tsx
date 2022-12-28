@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import RadioButton from '../components/RadioButton/RadioButton';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
+import Subheading from '../components/Subheading/Subheading';
 
 const Step1Page = () => {
     const navigate = useNavigate();
@@ -30,13 +31,17 @@ const Step1Page = () => {
         }
     });
 
+// spróbuj zamienić service card title na label i pozycjonować 
+
     const [value, setValue] = React.useState('');
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value);
     };
     return (
         <section className={style.section}>
-            <h2>Step 1</h2>
+            <Subheading fontSize="small" fontWeight="weight400" color="grey400">
+                Step 1
+            </Subheading>
             <Heading
                 color="light"
                 fontSize="large"
@@ -99,6 +104,7 @@ const Step1Page = () => {
                 size="large"
                 className={style.section__button}
                 handleClick={() => navigate('/step-2')}
+              
             >
                 Next
             </Button>

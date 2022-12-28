@@ -8,12 +8,13 @@ interface IButton {
     children: React.ReactNode;
     className?: string;
     handleClick: () => void;
+    
 }
 
-const Button: FC<IButton> = ({ handleClick, children, size, variant, className }) => {
+const Button: FC<IButton> = ({ handleClick, children, size,  variant, className }) => {
     return (
         <button
-            type="submit"
+            type='submit'
             className={cn(
                 style.button, 
                 style[size], 

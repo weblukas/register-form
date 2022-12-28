@@ -1,0 +1,41 @@
+@use '../../styles' as *;
+
+.grey300 {
+    color: $textGrey-300-Color;
+}
+
+.dark {
+    color: $blackColor;
+}
+
+.grey400 {
+    color: $textGrey-400-Color;
+}
+
+.grey700 {
+    color: $textGrey-700-Color;
+}
+
+.small {
+    font-size: 18px;
+}
+
+.large {
+    font-size: 23px;
+}
+
+.xlarge {
+    font-size: 26.13px;
+}
+
+.weight400 {
+    font-weight: 400;
+}
+
+.weight700 {
+    font-weight: 700;
+}
+
+.weight800 {
+    font-weight: 800;
+}
