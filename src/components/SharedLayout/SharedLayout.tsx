@@ -1,8 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import heroImg from '../../assets/hero.jpg';
-import styles from './SharedLayout.module.scss';
-import { Outlet } from 'react-router-dom';
-
+import style from './SharedLayout.module.scss';
 interface ISharedLayout {
   children: ReactNode;
 }
@@ -10,8 +8,8 @@ interface ISharedLayout {
 const SharedLayout: FC<ISharedLayout> = ({children}) => {
     return (<>
     
-        <div className={styles.wrapper}>
-            <img src={heroImg} alt="nature image" className={styles.heroImg} />
+        <div className={style.wrapper}>
+            <img src={heroImg} alt="nature image" className={style.heroImg} />
             
        {children}
         </div>

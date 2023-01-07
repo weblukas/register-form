@@ -35,7 +35,22 @@ export const radioTheme = createTheme({
                     color: '#6684F2'
                 }
             }
-        }
-    }
-});
+        },
+    }});
+    
+    export const inputTheme = createTheme({
+        components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+              root: {
+                "&.Mui-focused": {
+                    borderColor: "#C52328",
+                    borderWidth: "2px",
+                    color: 'red',
 
+                }
+              }
+            }
+          }
+
+}})

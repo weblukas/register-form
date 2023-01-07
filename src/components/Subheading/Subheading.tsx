@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import style from './Subheading.module.scss';
 import cn from 'classnames';
 

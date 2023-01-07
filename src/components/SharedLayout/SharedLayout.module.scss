@@ -2,6 +2,8 @@
 
 .wrapper {
     width: rem(1705);
+    height: 100vh;
+    overflow-x: hidden;
     display: flex;
     justify-content: start;
     background-color: $backgroundColor;

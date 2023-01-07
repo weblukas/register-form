@@ -6,6 +6,10 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: rem(145) rem(76.2) rem(107.5) rem(725.5);
 
+    &__image {
+            @include image-position;
+        }
+        
     &__heading {
         grid-column: span 2;
         margin: 0;

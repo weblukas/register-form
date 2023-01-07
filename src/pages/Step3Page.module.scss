@@ -1,0 +1,9 @@
+@use '../styles' as *;
+
+section {
+    padding: rem(116) rem(329) rem(85) rem(152);
+    display: grid;
+    &__image {
+            @include image-position;
+        }
+}

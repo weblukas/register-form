@@ -2,6 +2,7 @@ import React from 'react';
 import Heading from '../components/Heading/Heading';
 import ServiceCard from '../components/ServiceCard/ServiceCard';
 import style from './Step1Page.module.scss';
+import navi_1 from '../assets/navi_1.png';
 import diagram from '../assets/diagram.png';
 import development from '../assets/development.png';
 import freelancing from '../assets/freelancing.png';
@@ -12,6 +13,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import RadioButton from '../components/RadioButton/RadioButton';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 import Subheading from '../components/Subheading/Subheading';
+
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 const Step1Page = () => {
     const navigate = useNavigate();
@@ -31,6 +34,12 @@ const Step1Page = () => {
         }
     });
 
+
+    // hook fom
+
+    const { control, handleSubmit } = useForm({});
+
+
 // spróbuj zamienić service card title na label i pozycjonować 
 
     const [value, setValue] = React.useState('');
@@ -39,6 +48,7 @@ const Step1Page = () => {
     };
     return (
         <section className={style.section}>
+            <img src={navi_1} alt='step 1 image' className={style.section__image} />
             <Subheading fontSize="small" fontWeight="weight400" color="grey400">
                 Step 1
             </Subheading>
@@ -71,11 +81,12 @@ const Step1Page = () => {
                         value="corporate-services"
                         checked={value === 'corporate-services'}
                         name="service-radio"
+                        control={control}
                     />
                 </ServiceCard>
                 <ServiceCard
                     image={freelancing}
-                    title="Corporate Services"
+                    title="Freelancing Services"
                     className={style['section__card--center']}
                 >
                     <RadioButton
@@ -83,6 +94,7 @@ const Step1Page = () => {
                         value="freelancing-services"
                         checked={value === 'freelancing-services'}
                         name="service-radio"
+                        control={control}
                     />
                 </ServiceCard>
                 <ServiceCard
@@ -95,6 +107,7 @@ const Step1Page = () => {
                         value="development"
                         checked={value === 'development'}
                         name="service-radio"
+                        control={control}
                     />
                 </ServiceCard>
             </ThemeProvider>

@@ -1,27 +1,35 @@
 import React, { FC } from 'react';
 import Radio from '@mui/material/Radio';
-import { styled } from '@mui/material/styles';
-
+import { Controller } from 'react-hook-form';
 interface IRadioButton {
     handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
     checked: boolean;
     value: string;
     name: string;
+    control: any;
 }
 
 const RadioButton: FC<IRadioButton> = ({
     handleChange,
     checked,
     value,
-    name
+    name,
+    control
 }) => {
     return (
-        <Radio
-            checked={checked}
-            onChange={handleChange}
-            value={value}
+        <Controller
             name={name}
-        />
+            control={control}
+            render={({field})=>(
+
+                <Radio
+                {...field}
+                    checked={checked}
+                    onChange={handleChange}
+                    value={value}
+                />
+            )}
+            />
     );
 };
 

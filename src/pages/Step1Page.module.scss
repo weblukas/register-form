@@ -4,8 +4,12 @@
     padding: rem(117.32) rem(170) rem(142);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 120px 80.7px 138px 345px 158px 74px;
+    grid-template-rows: rem(120) rem(80.7) rem(138) minmax(rem(300), rem(345)) minmax(rem(100), rem(158)) rem(74);
 
+    &__image {
+       @include image-position;
+    }
+    
     &__heading {
         grid-column: span 3;
         margin: 0;
