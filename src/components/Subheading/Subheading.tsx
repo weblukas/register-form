@@ -7,20 +7,24 @@ interface ISubheading {
     fontSize: string;
     fontWeight: string;
     color: string;
+    className?: string;
 }
 
 const Subheading: FC<ISubheading> = ({
     children,
     fontSize,
     fontWeight,
-    color
+    color,
+    className
 }) => {
     return (
         <h2
             className={cn(
-                style[color], 
-                style[fontSize], 
-                style[fontWeight])}
+                style[color],
+                style[fontSize],
+                style[fontWeight],
+                className
+            )}
         >
             {children}
         </h2>

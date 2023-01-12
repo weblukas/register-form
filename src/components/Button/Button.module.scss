@@ -21,21 +21,22 @@
     height: 4rem;
 }
 
-.secondary {
-    background-color: $action200;
-    color: $whiteColor;
-    font-size: 1.482rem;
-    font-weight: 500;
-}
-
-.upload {
-    background-color: $backwardColor;
-    color: $textGrey-400-Color;
-    font-size: 1.482rem;
-}
-
 .primary {
     background-color: $action100;
     color: $whiteColor; 
     font-size: rem(21.73);
 }
+
+.secondary {
+    background-color: $backwardColor;
+    color: $whiteColor;
+    font-size: 1.482rem;
+    font-weight: 500;
+}
+
+// .upload {
+//     background-color: $action200;
+//     color: $textGrey-400-Color;
+//     font-size: 1.482rem;
+// }
+

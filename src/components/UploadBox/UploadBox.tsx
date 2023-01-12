@@ -15,6 +15,8 @@ const UploadBox = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
+        // const files = e.target.files?[0]; try to refactor
+        
         if (files !== null && files !== undefined) {
             const fileList = files;
             const selectedFile = fileList[0];

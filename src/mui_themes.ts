@@ -54,3 +54,35 @@ export const radioTheme = createTheme({
           }
 
 }})
+
+export const formControlLabelTheme = createTheme({
+    components: {
+        MuiFormControlLabel: {
+            styleOverrides: {
+                root: {
+                    width: '743px',
+                    height: '68px',
+                    border: '1px solid #dfdfdf',
+                    marginTop: '19.5px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingLeft: '34px'
+                }
+            }
+        }
+    }
+});
+
+export const step4Themeform = createTheme({
+    components: {
+       MuiInputLabel: {
+        styleOverrides: {
+            root: {
+                fontSize: '23px',
+                fontWeight: '700',
+                color: '#5F5F63',
+            }
+        }
+       } 
+    }
+})

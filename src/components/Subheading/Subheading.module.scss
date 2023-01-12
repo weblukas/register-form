@@ -1,31 +1,34 @@
 @use '../../styles' as *;
 
-.grey300 {
-    color: $textGrey-300-Color;
-}
-
 .dark {
     color: $blackColor;
 }
 
+.grey300 {
+    color: $textGrey-300-Color;
+    //#5f5f63
+}
+
 .grey400 {
     color: $textGrey-400-Color;
+    //#636363;
 }
 
 .grey700 {
     color: $textGrey-700-Color;
+    //#161616;
 }
 
 .small {
-    font-size: 18px;
+    font-size: rem(18);
 }
 
 .large {
-    font-size: 23px;
+    font-size: rem(23);
 }
 
 .xlarge {
-    font-size: 26.13px;
+    font-size: rem(26.13);
 }
 
 .weight400 {

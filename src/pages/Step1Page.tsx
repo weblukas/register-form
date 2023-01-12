@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Heading from '../components/Heading/Heading';
 import ServiceCard from '../components/ServiceCard/ServiceCard';
 import style from './Step1Page.module.scss';
@@ -42,7 +42,7 @@ const Step1Page = () => {
 
 // spróbuj zamienić service card title na label i pozycjonować 
 
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = useState('');
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value);
     };

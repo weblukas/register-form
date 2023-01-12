@@ -6,6 +6,14 @@ interface IProgressBar {
 }
 
 const ProgressBar: FC<IProgressBar> = ({ progress }) => {
+    function countProgress(progressNr: number) {
+        return () => {
+            let lowerNr = progressNr - 1
+            setTimeout(() => lowerNr, 1000);
+            return progressNr;
+        };
+    }
+
     const progressStyle = {
         width: `${progress * 20}%`,
         transition: 'width 1s ease-in-out'

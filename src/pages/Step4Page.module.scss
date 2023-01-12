@@ -1,0 +1,18 @@
+@use '../styles' as *;
+
+.section {
+        padding: rem(116) rem(280) rem(90) rem(152);
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: rem(158) rem(123.2) rem(86.2) rem(931.5);
+
+        &__image {
+                @include image-position;
+            }
+
+        &__form {
+            grid-column: span 2;
+        }
+
+
+}
