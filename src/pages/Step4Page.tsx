@@ -5,17 +5,29 @@ import ProgressBar from '../components/ProgressBar/ProgressBar';
 import style from './Step4Page.module.scss';
 import navi_4 from '../assets/navi_4.png';
 import budgetIcon from '../assets/budgetIcon.png';
+import msg2Icon from '../assets/msg2Icon.png';
+import msgIcon from '../assets/msgIcon.png';
 import { budget } from '../utilitis/data';
+import { support } from '../utilitis/data';
 import CustomInput from '../components/CustomInput/CustomInput';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import { useForm } from 'react-hook-form';
-import { FormControlLabel, Input, FormHelperText } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { step4Themeform } from '../mui_themes';
-import FormLabel from '@mui/material/FormLabel';
+import { checkboxTheme } from '../mui_themes';
+import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+
+import cn from 'classnames';
+import Subheading from '../components/Subheading/Subheading';
+import CustomCheckbox from '../components/CustomCheckbox/CustomCheckbox';
+import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
+import Button from '../components/Button/Button';
+import { FormGroup } from '@mui/material';
+
 const Step4Page = () => {
+    const theme = useTheme();
     const {
         control,
         handleSubmit,
@@ -27,6 +39,9 @@ const Step4Page = () => {
             phone: ''
         }
     });
+
+    const navigate = useNavigate();
+    const { focused } = useFormControl() || {};
 
     return (
         <section className={style.section}>
@@ -61,14 +76,6 @@ const Step4Page = () => {
           </Subheading> */}
             <form className={style.section__form}>
                 <ThemeProvider theme={step4Themeform}>
-                    {/* <InputLabel
-                            htmlFor="budget-select"
-                            variant="standard"
-                            // margin='dense'
-                        >
-                        Budget
-                    </InputLabel> */}
-
                     <CustomInput
                         select
                         id="budget-select"
@@ -80,6 +87,8 @@ const Step4Page = () => {
                         sx={{ mt: '3rem' }}
                         src={budgetIcon}
                         alt=""
+                        className={style.label__icon}
+                        // color='red'
                     >
                         {budget.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
@@ -87,12 +96,83 @@ const Step4Page = () => {
                             </MenuItem>
                         ))}
                     </CustomInput>
-
-                    {/* <label htmlFor="budget-select">
-                            <img src={budgetIcon} alt="" />
-                            Budget
-                        </label> */}
-
+                    <CustomInput
+                        control={control}
+                        name="support-select"
+                        select
+                        id="support-select"
+                        aria-describedby="required support"
+                        defaultValue={support[0].value}
+                        outsideLabel="Required Support"
+                        sx={{ mt: '3rem' }}
+                        src={msg2Icon}
+                        alt=""
+                        className={cn(style.label__icon)}
+                    >
+                        {support.map((item) => (
+                            <MenuItem key={item.value} value={item.value}>
+                                {item.label}
+                            </MenuItem>
+                        ))}
+                    </CustomInput>
+                    <Subheading
+                        fontSize="large"
+                        fontWeight="weight700"
+                        color="grey300"
+                        className={style.section__subheading}
+                    >
+                        Optimization and Accessibility
+                    </Subheading>
+                        <ThemeProvider theme={checkboxTheme}>
+                    <FormGroup row={true} className={style.checkboxGroup}>
+                            <CustomCheckbox
+                                onChange={() => console.log('pap')}
+                                name="semantic-coding"
+                                checked={true}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                label="Semantic coding"
+                                control={control}
+                            />
+                            <CustomCheckbox
+                                onChange={() => console.log('pap')}
+                                name="mobile-app"
+                                checked={true}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                label="Mobile APP"
+                                control={control}
+                            />
+                            <CustomCheckbox
+                                onChange={() => console.log('pap')}
+                                name="mobile-design"
+                                checked={true}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                label="Mobile Design"
+                                control={control}
+                            />
+                    </FormGroup>
+                        </ThemeProvider>
+                    <CustomInput
+                        control={control}
+                        name="notes"
+                        outsideLabel="Write Some note"
+                        multiline
+                        aria-describedby="write some note"
+                        rows={5}
+                        placeholder="Hi ciestosolution, I noticed your profile and would like to offer you my project.
+We can discuss any details over chat."
+                        sx={{ mt: '3rem' }}
+                        src={msgIcon}
+                        alt=""
+                        className={cn(style.label__icon)}
+                    ></CustomInput>
+                    <HorizontalDivider />
+                    <Button
+                        size="small"
+                        variant="primary"
+                        handleClick={() => navigate('/step-5')}
+                    >
+                        Next
+                    </Button>
                 </ThemeProvider>
             </form>
         </section>

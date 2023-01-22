@@ -1,26 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import style from './Button.module.scss';
 import cn from 'classnames';
 
 interface IButton {
     size: string;
     variant: string;
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
+    type?: 'submit' | 'reset' ;
     handleClick: () => void;
-    
 }
 
-const Button: FC<IButton> = ({ handleClick, children, size,  variant, className }) => {
+const Button: FC<IButton> = ({ handleClick, children, size,  variant, className, type }) => {
     return (
         <button
-            type='submit'
+            type={type}
+            onClick={handleClick}
             className={cn(
                 style.button, 
                 style[size], 
                 style[variant], 
                 className)}
-            onClick={handleClick}
         >
             {children}
         </button>

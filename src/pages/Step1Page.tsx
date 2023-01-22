@@ -77,7 +77,7 @@ const Step1Page = () => {
                     className={style['section__card--first']}
                 >
                     <RadioButton
-                        handleChange={handleChange}
+                        // handleChange={handleChange}
                         value="corporate-services"
                         checked={value === 'corporate-services'}
                         name="service-radio"
@@ -90,7 +90,7 @@ const Step1Page = () => {
                     className={style['section__card--center']}
                 >
                     <RadioButton
-                        handleChange={handleChange}
+                        // handleChange={handleChange}
                         value="freelancing-services"
                         checked={value === 'freelancing-services'}
                         name="service-radio"
@@ -103,7 +103,7 @@ const Step1Page = () => {
                     className={style['section__card--last']}
                 >
                     <RadioButton
-                        handleChange={handleChange}
+                        // handleChange={handleChange}
                         value="development"
                         checked={value === 'development'}
                         name="service-radio"

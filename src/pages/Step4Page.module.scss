@@ -6,6 +6,14 @@
         grid-template-columns: 1fr 2fr;
         grid-template-rows: rem(158) rem(123.2) rem(86.2) rem(931.5);
 
+        &__heading {
+            grid-column: span 2;
+        }
+
+        &__paragraph {
+            grid-column: span 2;
+        }
+
         &__image {
                 @include image-position;
             }
@@ -14,5 +22,18 @@
             grid-column: span 2;
         }
 
-
 }
+
+.label__icon {
+    margin-right: 16px;
+}
+
+.input {
+    height: 90px;
+    color: red;
+}
+
+// this class can be usefull for mediaqueries
+// .checkboxGroup {
+    
+// }

@@ -1,7 +1,8 @@
 import { FC, ReactNode } from 'react';
-import { FormControl, TextField, FormLabel } from '@mui/material';
+import { FormControl, TextField, FormLabel,  } from '@mui/material';
 import { Controller, FieldValues, Control } from 'react-hook-form';
-import { useFormContext } from 'react-hook-form';
+
+
 interface IInput {
     label?: string;
     select?: boolean;
@@ -11,14 +12,17 @@ interface IInput {
     sx?: object;
     children?: ReactNode;
     name: string;
-    control: any;
+    control: Control<FormInput>
     error?: boolean;
     helperText?: string;
     defaultValue?: string;
     id?: string;
-    outsideLabel?:string;
+    outsideLabel?: string;
     src?: string;
     alt?: string;
+    className?: string;
+    // color?: any;
+     //////    how to add color property to change color of text field
 }
 
 const Input: FC<IInput> = ({ 
@@ -37,25 +41,29 @@ const Input: FC<IInput> = ({
     id,
     outsideLabel,
     src,
-    alt, 
+    alt,
+    className,
+    // color,
+
 }) => {
 
     // const {
     //     formState: { errors },
     //   } = useFormContext();
+
       
     return (
         <FormControl fullWidth sx={sx}>
             <FormLabel>
-                <img src={src} alt={alt}/>
+                <img src={src} alt={alt} className={className} />
                 {outsideLabel}
                 </FormLabel>
-            <Controller
+            {/* <Controller
                 name={name}
                 control={control}
-                render={({ field }) => (
+                render={({ field }) => ( */}
                     <TextField
-                        {...field}
+                        // {...field}
                         select={select}
                         multiline={multiline}
                         rows={rows}
@@ -65,11 +73,12 @@ const Input: FC<IInput> = ({
                         helperText={helperText}
                         defaultValue={defaultValue}
                         id={id}
+                        // color={color} 
                     >
                         {children}
                     </TextField>
-                )}
-            />
+                {/* )}
+            /> */}
         </FormControl>
     );
 };

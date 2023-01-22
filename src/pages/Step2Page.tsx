@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Button from '../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import CustomInput from '../components/CustomInput/CustomInput';
@@ -16,7 +16,9 @@ import { radioTheme, inputTheme } from '../mui_themes';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import UploadBox from '../components/UploadBox/UploadBox';
 import navi_2 from '../assets/navi_2.png';
+import { Controller, FieldValues, Control } from 'react-hook-form';
 
+import { DevTool } from '@hookform/devtools';
 const Step2Page = () => {
     const navigate = useNavigate();
 
@@ -31,10 +33,11 @@ const Step2Page = () => {
     const [person, setPerson] = useState({
         PersonName: '',
         PersonAddress: '',
-        PersonPhone: ''
+        PersonPhone: '',
+        PersonGender: ''
     });
 
-    const methods = useForm(); // check if you need form Providre and methods
+    //const methods = useForm();  check if you need form Providre and methods
 
     const {
         control,
@@ -44,22 +47,25 @@ const Step2Page = () => {
         defaultValues: {
             firstName: '',
             emailAddress: '',
-            phone: ''
+            phone: '',
+            gender: 'male',
         }
     });
 
     const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
-        const { firstName, emailAddress, phone } = data;
+        console.log(data)
+        const { firstName, emailAddress, phone, gender} = data;
         setPerson({
             PersonName: firstName,
             PersonAddress: emailAddress,
-            PersonPhone: phone
+            PersonPhone: phone,
+            PersonGender: gender,
         });
     };
 
     const handleClick = () => {
         () => onSubmit;
-        navigate('/step-3');
+        // navigate('/step-3');
     };
 
     console.log(person);
@@ -94,8 +100,13 @@ const Step2Page = () => {
             {/* form starts here */}
             <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
                 <ThemeProvider theme={inputTheme}>
+                    <Controller
+                name='firstName'
+                control={control}
+                render={({ field }) => (
                     <CustomInput
-                        label="First and last name"
+                        {...field}
+                        placeholder="First and last name"
                         sx={{ mb: '14.5px' }}
                         control={control}
                         name="firstName"
@@ -104,9 +115,9 @@ const Step2Page = () => {
                             errors.firstName && errors.firstName.message
                         }
                     />
-
+)} />
                     <CustomInput
-                        label="Phone"
+                        placeholder="Phone"
                         sx={{ mb: '14.5px' }}
                         control={control}
                         name="phone"
@@ -114,7 +125,7 @@ const Step2Page = () => {
                         helperText={errors.phone && errors.phone.message}
                     />
                     <CustomInput
-                        label="email"
+                        placeholder="email"
                         sx={{ mb: '14.5px' }}
                         control={control}
                         name="emailAddress"
@@ -126,60 +137,61 @@ const Step2Page = () => {
                 </ThemeProvider>
 
                 <ThemeProvider theme={radioTheme}>
-                    <FormProvider {...methods}>
-                        <RadioGroup
-                            row
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="male"
-                            name="radio-buttons-group"
-                        >
-                                <FormLabel id="radio-buttons-gender-label">
-                                    Gender
-                                </FormLabel>
-                            <FormControl sx={{ mt: '50px' }}>
-                            </FormControl>
-                            <FormControlLabel
-                                control={
-                                    <RadioButton
-                                        handleChange={handleChange}
-                                        value="male"
-                                        checked={value === 'male'}
-                                        name="gender-radio"
-                                        control={control}
-                                    />
-                                }
-                                label="Male"
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '18.6px',
-                                        fontWeight: '600'
+                    {/* <FormProvider {...methods}> */}
+                        <FormControl sx={{ mt: '50px' }}>
+                            <FormLabel id="radio-buttons-gender-label">
+                                Gender
+                            </FormLabel>
+                            <RadioGroup
+                                row
+                                aria-labelledby="gender-radio"
+                                defaultValue="male"
+                                name="radio-buttons-group"
+                            >
+                                <FormControlLabel
+                                    label="Male"
+                                    control={
+                                        <RadioButton
+                                            // handleChange={handleChange}
+                                            value="male"
+                                            checked={value === 'male'}
+                                            name="gender"
+                                            control={control}
+                                        />
                                     }
-                                }}
-                            />
-                            <FormControlLabel
-                                control={
-                                    <RadioButton
-                                        handleChange={handleChange}
-                                        value="female"
-                                        checked={value === 'female'}
-                                        name="gender-radio"
-                                        control={control}
-                                    />
-                                }
-                                label="Female"
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '18.6px',
-                                        fontWeight: '600',
-                                        fontFamily: 'Jost'
+                                    sx={{
+                                        '& .MuiFormControlLabel-label': {
+                                            fontSize: '18.6px',
+                                            fontWeight: '600'
+                                        }
+                                    }}
+                                />
+                                <FormControlLabel
+                                    control={
+                                        <RadioButton
+                                            // handleChange={handleChange}
+                                            value="female"
+                                            checked={value === 'female'}
+                                            name="gender"
+                                            control={control}
+                                        />
                                     }
-                                }}
-                            />
-                        </RadioGroup>
-                    </FormProvider>
+                                    label="Female"
+                                    sx={{
+                                        '& .MuiFormControlLabel-label': {
+                                            fontSize: '18.6px',
+                                            fontWeight: '600',
+                                            fontFamily: 'Jost'
+                                        }
+                                    }}
+                                />
+                            </RadioGroup>
+                        </FormControl>
+                    {/* </FormProvider> */}
                 </ThemeProvider>
                 <UploadBox />
                 <Button
+                    type="submit"
                     variant="primary"
                     size="large"
                     handleClick={handleClick}
@@ -189,6 +201,7 @@ const Step2Page = () => {
                 </Button>
                 {/* <button type="submit">press</button> */}
             </form>
+            <DevTool control={control} />
         </section>
     );
 };

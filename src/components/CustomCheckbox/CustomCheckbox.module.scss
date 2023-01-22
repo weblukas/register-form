@@ -1,0 +1,15 @@
+@use '../../styles' as *;
+
+.checkboxContainer {
+    width: 245px;
+    height: 64px;
+    border: 1px solid $borderDarkerColor;
+    display: flex;
+    color: $textGrey-300-Color;
+    font-weight: 600;
+    font-family: 'Jost';
+}
+
+.checked {
+    border: 1px solid #6B59D3;
+}

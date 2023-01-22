@@ -3,19 +3,21 @@ import Radio from '@mui/material/Radio';
 import { Controller } from 'react-hook-form';
 import { FormControl } from '@mui/material';
 interface IRadioButton {
-    handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
+    // handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
     checked: boolean;
     value: string;
     name: string;
     control: any;
+ 
 }
 
 const RadioButton: FC<IRadioButton> = ({
-    handleChange,
+    // handleChange,
     checked,
     value,
     name,
-    control
+    control,
+
 }) => {
     return (
      
@@ -26,7 +28,7 @@ const RadioButton: FC<IRadioButton> = ({
                     <Radio
                         {...field}
                         checked={checked}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                         value={value}
                     />
                 )}

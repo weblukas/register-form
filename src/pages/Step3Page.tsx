@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Box from '@mui/material/Box';
 import RadioGroup from '@mui/material/RadioGroup';
-import Input from '../components/CustomInput/CustomInput';
+import CustomInput from '../components/CustomInput/CustomInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import style from './Step3Page.module.scss';
 import { languages } from '../utilitis/data';
@@ -76,7 +76,7 @@ const Step3Page = () => {
                                     value="webDesign1"
                                     control={
                                         <RadioButton
-                                            handleChange={handleChange}
+                                            // handleChange={handleChange}
                                             control={control}
                                             checked={value === 'webDesign1'}
                                             value="webDesign1"
@@ -92,7 +92,7 @@ const Step3Page = () => {
                                     value="webDesign2"
                                     control={
                                         <RadioButton
-                                            handleChange={handleChange}
+                                            // handleChange={handleChange}
                                             control={control}
                                             checked={value === 'webDesign2'}
                                             value="webDesign2"
@@ -108,7 +108,7 @@ const Step3Page = () => {
                                     value="webDesign3"
                                     control={
                                         <RadioButton
-                                            handleChange={handleChange}
+                                            // handleChange={handleChange}
                                             control={control}
                                             checked={value === 'webDesign3'}
                                             value="webDesign3"
@@ -124,7 +124,7 @@ const Step3Page = () => {
                                     value="webDesign4"
                                     control={
                                         <RadioButton
-                                            handleChange={handleChange}
+                                            // handleChange={handleChange}
                                             control={control}
                                             checked={value === 'webDesign4'}
                                             value="webDesign4"
@@ -144,11 +144,12 @@ const Step3Page = () => {
                             I want to browse projects in the following
                             languages:
                         </Subheading>
-                        <Input
+                        <CustomInput
+                            control={control}
+                            name="languages"
                             select
                             label="Languages"
-                            name="languages"
-                            control={control}
+                            aria-describedby="required support"
                             defaultValue={languages[0].value}
                         >
                             {languages.map((language) => (
@@ -159,7 +160,7 @@ const Step3Page = () => {
                                     {language.label}
                                 </MenuItem>
                             ))}
-                        </Input>
+                        </CustomInput>
                         <Subheading
                             fontSize="small"
                             fontWeight="weight400"
@@ -168,13 +169,14 @@ const Step3Page = () => {
                             <img src={msgIcon} alt="message icon" />
                             Write Somthing note
                         </Subheading>
-                        <Input
+                        <CustomInput
                             control={control}
                             name="notes"
                             multiline
+                            aria-describedby="write some note"
                             rows={5}
                             placeholder="Hi ciestosolution, I noticed your profile and would like to offer you my project.
-                            We can discuss any details over chat."
+We can discuss any details over chat."
                         />
                     </FormControl>
                     <HorizontalDivider />

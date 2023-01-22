@@ -2,4 +2,5 @@
         firstName: string;
         emailAddress: string;
         phone: string;
+        gender: string;
     }
