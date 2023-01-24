@@ -12,7 +12,7 @@ interface IInput {
     sx?: object;
     children?: ReactNode;
     name: string;
-    control: Control<FormInput>
+    control: any; //Control<FormInput>
     error?: boolean;
     helperText?: string;
     defaultValue?: string;
@@ -58,12 +58,12 @@ const Input: FC<IInput> = ({
                 <img src={src} alt={alt} className={className} />
                 {outsideLabel}
                 </FormLabel>
-            {/* <Controller
+            <Controller
                 name={name}
                 control={control}
-                render={({ field }) => ( */}
+                render={({ field }) => (
                     <TextField
-                        // {...field}
+                        {...field}
                         select={select}
                         multiline={multiline}
                         rows={rows}
@@ -77,8 +77,8 @@ const Input: FC<IInput> = ({
                     >
                         {children}
                     </TextField>
-                {/* )}
-            /> */}
+                )}
+            />
         </FormControl>
     );
 };

@@ -16,17 +16,27 @@ import { radioTheme, inputTheme } from '../mui_themes';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import UploadBox from '../components/UploadBox/UploadBox';
 import navi_2 from '../assets/navi_2.png';
-import { Controller, FieldValues, Control } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 import { DevTool } from '@hookform/devtools';
+import { updateEmailAddress, updateName } from '../app/formSlice';
+import { RootState } from '../app/store';
 const Step2Page = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const currentState = useSelector(
+        (state: RootState) => state.form.firstAndLastName
+    );
+    console.log(currentState, 'to twoje imię');
+    const schema = yup.object().shape({
+        firstName: yup.string().min(3).max(20).required(),
+        emailAddress: yup.string().email().required(),
+        phone: yup.number().min(6).max(18),
+    });
 
-    const [value, setValue] = React.useState('male');
-
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value);
-    };
 
     // form Hook ////
 
@@ -48,19 +58,30 @@ const Step2Page = () => {
             firstName: '',
             emailAddress: '',
             phone: '',
-            gender: 'male',
-        }
+            gender: ''
+        },
+        resolver: yupResolver(schema)
     });
 
     const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
-        console.log(data)
-        const { firstName, emailAddress, phone, gender} = data;
+        console.log(data);
+        const { firstName, emailAddress, phone, gender } = data;
         setPerson({
             PersonName: firstName,
             PersonAddress: emailAddress,
             PersonPhone: phone,
-            PersonGender: gender,
+            PersonGender: gender
         });
+        dispatch(
+            updateName({
+                firstAndLastName: firstName
+            })
+        );
+        dispatch(
+            updateEmailAddress({
+                emailAddress: emailAddress
+            })
+        );
     };
 
     const handleClick = () => {
@@ -100,12 +121,7 @@ const Step2Page = () => {
             {/* form starts here */}
             <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
                 <ThemeProvider theme={inputTheme}>
-                    <Controller
-                name='firstName'
-                control={control}
-                render={({ field }) => (
                     <CustomInput
-                        {...field}
                         placeholder="First and last name"
                         sx={{ mb: '14.5px' }}
                         control={control}
@@ -115,7 +131,7 @@ const Step2Page = () => {
                             errors.firstName && errors.firstName.message
                         }
                     />
-)} />
+
                     <CustomInput
                         placeholder="Phone"
                         sx={{ mb: '14.5px' }}
@@ -138,55 +154,51 @@ const Step2Page = () => {
 
                 <ThemeProvider theme={radioTheme}>
                     {/* <FormProvider {...methods}> */}
-                        <FormControl sx={{ mt: '50px' }}>
-                            <FormLabel id="radio-buttons-gender-label">
-                                Gender
-                            </FormLabel>
-                            <RadioGroup
-                                row
-                                aria-labelledby="gender-radio"
-                                defaultValue="male"
-                                name="radio-buttons-group"
-                            >
-                                <FormControlLabel
-                                    label="Male"
-                                    control={
-                                        <RadioButton
-                                            // handleChange={handleChange}
-                                            value="male"
-                                            checked={value === 'male'}
-                                            name="gender"
-                                            control={control}
-                                        />
+                    <FormControl sx={{ mt: '50px' }}>
+                        <FormLabel id="radio-buttons-gender-label">
+                            Gender
+                        </FormLabel>
+                        <RadioGroup
+                            row
+                            aria-labelledby="gender-radio"
+                            defaultValue="male"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel
+                                label="Male"
+                                control={
+                                    <RadioButton
+                                        name="gender"
+                                        value="male"
+                                        control={control}
+                                    />
+                                }
+                                sx={{
+                                    '& .MuiFormControlLabel-label': {
+                                        fontSize: '18.6px',
+                                        fontWeight: '600'
                                     }
-                                    sx={{
-                                        '& .MuiFormControlLabel-label': {
-                                            fontSize: '18.6px',
-                                            fontWeight: '600'
-                                        }
-                                    }}
-                                />
-                                <FormControlLabel
-                                    control={
-                                        <RadioButton
-                                            // handleChange={handleChange}
-                                            value="female"
-                                            checked={value === 'female'}
-                                            name="gender"
-                                            control={control}
-                                        />
+                                }}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <RadioButton
+                                        name="gender"
+                                        value="female"
+                                        control={control}
+                                    />
+                                }
+                                label="Female"
+                                sx={{
+                                    '& .MuiFormControlLabel-label': {
+                                        fontSize: '18.6px',
+                                        fontWeight: '600',
+                                        fontFamily: 'Jost'
                                     }
-                                    label="Female"
-                                    sx={{
-                                        '& .MuiFormControlLabel-label': {
-                                            fontSize: '18.6px',
-                                            fontWeight: '600',
-                                            fontFamily: 'Jost'
-                                        }
-                                    }}
-                                />
-                            </RadioGroup>
-                        </FormControl>
+                                }}
+                            />
+                        </RadioGroup>
+                    </FormControl>
                     {/* </FormProvider> */}
                 </ThemeProvider>
                 <UploadBox />
