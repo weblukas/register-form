@@ -13,42 +13,45 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import RadioButton from '../components/RadioButton/RadioButton';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 import Subheading from '../components/Subheading/Subheading';
+import { step1RadioTheme } from '../mui_themes';
 
-import { useForm, SubmitHandler } from 'react-hook-form';
+import RadioGroup from '@mui/material/RadioGroup';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
 
 const Step1Page = () => {
     const navigate = useNavigate();
 
-    const theme = createTheme({
-        components: {
-            MuiRadio: {
-                styleOverrides: {
-                    root: {
-                        position: 'absolute',
-                        top: '13px',
-                        right: '17px',
-                        color: '#E1E1E1'
-                    }
-                }
-            }
-        }
-    });
+  
 
 
     // hook fom
 
-    const { control, handleSubmit } = useForm({});
+    const { control, handleSubmit } = useForm<Service>({
+        defaultValues: {service: ''}
+    });
+    
+    const onSubmit: SubmitHandler<Service> = (data: Service)=>{
+        console.log(data)
+    }
 
+    const handleNext = ()=>{
+        () => onSubmit;
+    }
 
 // spróbuj zamienić service card title na label i pozycjonować 
 
-    const [value, setValue] = useState('');
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value);
-    };
+    // const [value, setValue] = useState('');
+    // const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    //     setValue(e.currentTarget.value);
+    // };
     return (
         <section className={style.section}>
-            <img src={navi_1} alt='step 1 image' className={style.section__image} />
+            <img
+                src={navi_1}
+                alt="step 1 image"
+                className={style.section__image}
+            />
             <Subheading fontSize="small" fontWeight="weight400" color="grey400">
                 Step 1
             </Subheading>
@@ -70,57 +73,65 @@ const Step1Page = () => {
                 dictas concludaturque usu, facete detracto patrioque an per,
                 lucilius pertinacia eu vel.
             </Paragraph>
-            <ThemeProvider theme={theme}>
-                <ServiceCard
-                    image={diagram}
-                    title="Corporate Services"
-                    className={style['section__card--first']}
+            <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+                <ThemeProvider theme={step1RadioTheme}>
+                    <RadioGroup
+                        row
+                        aria-labelledby="service-radio"
+                        defaultValue="corporate-services"
+                    >
+                        <ServiceCard
+                            image={diagram}
+                            title="Corporate Services"
+                            className={style['form__card--first']}
+                        >
+                            <RadioButton
+                                name="service"
+                                value="corporate-services"
+                                control={control}
+                                // checked={value === 'corporate-services'}
+                                // handleChange={handleChange}
+                            />
+                        </ServiceCard>
+                        <ServiceCard
+                            image={freelancing}
+                            title="Freelancing Services"
+                            className={style['form__card--center']}
+                        >
+                            <RadioButton
+                                name="service"
+                                value="freelancing-services"
+                                control={control}
+                                // handleChange={handleChange}
+                                // checked={value === 'freelancing-services'}
+                            />
+                        </ServiceCard>
+                        <ServiceCard
+                            image={development}
+                            title="Development"
+                            className={style['form__card--last']}
+                        >
+                            <RadioButton
+                                name="service"
+                                value="development"
+                                control={control}
+                                // handleChange={handleChange}
+                                // checked={value === 'development'}
+                            />
+                        </ServiceCard>
+                    </RadioGroup>
+                </ThemeProvider>
+                <HorizontalDivider className={style.form__divider} />
+                <Button
+                    variant="primary"
+                    size="large"
+                    className={style.form__button}
+                    handleClick={handleNext}
                 >
-                    <RadioButton
-                        // handleChange={handleChange}
-                        value="corporate-services"
-                        checked={value === 'corporate-services'}
-                        name="service-radio"
-                        control={control}
-                    />
-                </ServiceCard>
-                <ServiceCard
-                    image={freelancing}
-                    title="Freelancing Services"
-                    className={style['section__card--center']}
-                >
-                    <RadioButton
-                        // handleChange={handleChange}
-                        value="freelancing-services"
-                        checked={value === 'freelancing-services'}
-                        name="service-radio"
-                        control={control}
-                    />
-                </ServiceCard>
-                <ServiceCard
-                    image={development}
-                    title="Development"
-                    className={style['section__card--last']}
-                >
-                    <RadioButton
-                        // handleChange={handleChange}
-                        value="development"
-                        checked={value === 'development'}
-                        name="service-radio"
-                        control={control}
-                    />
-                </ServiceCard>
-            </ThemeProvider>
-            <HorizontalDivider className={style.section__divider} />
-            <Button
-                variant="primary"
-                size="large"
-                className={style.section__button}
-                handleClick={() => navigate('/step-2')}
-              
-            >
-                Next
-            </Button>
+                    Next
+                </Button>
+            </form>
+            <DevTool control={control} />
         </section>
     );
 };

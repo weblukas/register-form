@@ -13,6 +13,27 @@ export const theme = createTheme({
   },
 });
 
+  export const step1RadioTheme = createTheme({
+        components: {
+            MuiRadio: {
+                styleOverrides: {
+                    root: {
+                        position: 'absolute',
+                        top: '13px',
+                        right: '17px',
+                        color: '#E1E1E1'
+                    }
+                }
+            },
+            MuiFormGroup: {
+                styleOverrides: {
+                    root: {
+                        justifyContent: 'space-between',
+                    }
+                }
+            }
+        }
+    });
 export const fontTheme = createTheme({
     components: {
         MuiTypography: {

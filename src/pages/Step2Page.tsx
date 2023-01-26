@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Button from '../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import CustomInput from '../components/CustomInput/CustomInput';
@@ -14,7 +14,7 @@ import style from './Step2Page.module.scss';
 import Paragraph from '../components/Paragraph/Paragraph';
 import { radioTheme, inputTheme } from '../mui_themes';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import UploadBox from '../components/UploadBox/UploadBox';
+import FileUpload from '../components/FileUpload/FileUpload';
 import navi_2 from '../assets/navi_2.png';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,8 +24,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { DevTool } from '@hookform/devtools';
 import { updateEmailAddress, updateName } from '../app/formSlice';
 import { RootState } from '../app/store';
+
 const Step2Page = () => {
     const navigate = useNavigate();
+
+    // toolkit
     const dispatch = useDispatch();
     const currentState = useSelector(
         (state: RootState) => state.form.firstAndLastName
@@ -34,8 +37,40 @@ const Step2Page = () => {
     const schema = yup.object().shape({
         firstName: yup.string().min(3).max(20).required(),
         emailAddress: yup.string().email().required(),
-        phone: yup.number().min(6).max(18),
+        phone: yup.number().max(18),
     });
+
+    // uploadfile
+       const [uploadedFile, setUploadedFile] = useState<File>();
+       const [acceptedFiles, setAcceptedFiles] = useState([
+           {
+               selectedFile: {},
+               fileName: '',
+               fileSize: 0
+           }
+       ]);
+
+       const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+           const files = e.target.files;
+           // const files = e.target.files?[0]; try to refactor
+
+           if (files !== null && files !== undefined) {
+               const fileList = files;
+               const selectedFile = fileList[0];
+               const fileName = fileList[0].name;
+               const fileSize = fileList[0].size;
+               setUploadedFile(selectedFile);
+               setAcceptedFiles([
+                   ...acceptedFiles,
+                   {
+                       selectedFile,
+                       fileName,
+                       fileSize
+                   }
+               ]);
+           }
+       };
+
 
 
     // form Hook ////
@@ -44,7 +79,8 @@ const Step2Page = () => {
         PersonName: '',
         PersonAddress: '',
         PersonPhone: '',
-        PersonGender: ''
+        PersonGender: '',
+        // FileUpload: [],
     });
 
     //const methods = useForm();  check if you need form Providre and methods
@@ -53,24 +89,26 @@ const Step2Page = () => {
         control,
         handleSubmit,
         formState: { errors }
-    } = useForm<FormInput>({
+    } = useForm<CustomerInfo>({
         defaultValues: {
             firstName: '',
             emailAddress: '',
             phone: '',
-            gender: ''
+            gender: '',
+            // fileUpload: []
         },
         resolver: yupResolver(schema)
     });
 
-    const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
+    const onSubmit: SubmitHandler<CustomerInfo> = (data: CustomerInfo) => {
         console.log(data);
-        const { firstName, emailAddress, phone, gender } = data;
+        const { firstName, emailAddress, phone, gender, } = data;
         setPerson({
             PersonName: firstName,
             PersonAddress: emailAddress,
             PersonPhone: phone,
-            PersonGender: gender
+            PersonGender: gender,
+            // PersonFiles: fileUpload,
         });
         dispatch(
             updateName({
@@ -162,7 +200,7 @@ const Step2Page = () => {
                             row
                             aria-labelledby="gender-radio"
                             defaultValue="male"
-                            name="radio-buttons-group"
+                            // name="radio-buttons-group"
                         >
                             <FormControlLabel
                                 label="Male"
@@ -201,7 +239,7 @@ const Step2Page = () => {
                     </FormControl>
                     {/* </FormProvider> */}
                 </ThemeProvider>
-                <UploadBox />
+                {/* <FileUpload name='fileUpload' control={control} handleChange={handleChange} acceptedFiles={acceptedFiles}/> */}
                 <Button
                     type="submit"
                     variant="primary"

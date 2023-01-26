@@ -3,38 +3,28 @@
 .section {
     padding: rem(117.32) rem(170) rem(142);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: rem(120) rem(80.7) rem(138) minmax(rem(300), rem(345)) minmax(rem(100), rem(158)) rem(74);
+    
+    grid-template-rows: rem(120) rem(80.7) rem(138) rem(575);
 
     &__image {
        @include image-position;
     }
-    
-    &__heading {
-        grid-column: span 3;
-        margin: 0;
-    }
 
     &__paragraph {
-        grid-column: span 3;
         margin: 0;
-    }
-
-      &__card--last {
-        justify-self: end;
-    }
-
-    &__card--center {
-        justify-self: center;
-    }
-
-    &__divider {
-        grid-column: span 3;
-    }
-
-    &__button {
-        grid-column: 3/4;
-        justify-self: end;
     }
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+
+    &__divider {
+      margin-top: rem(117);
+    }
+    
+    &__button {
+      margin-top: rem(156);
+      align-self: end;
+    }
+}

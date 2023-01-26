@@ -78,7 +78,6 @@ const Step3Page = () => {
                                         <RadioButton
                                             // handleChange={handleChange}
                                             control={control}
-                                            checked={value === 'webDesign1'}
                                             value="webDesign1"
                                             name="web-design-radio"
                                         />
@@ -94,7 +93,6 @@ const Step3Page = () => {
                                         <RadioButton
                                             // handleChange={handleChange}
                                             control={control}
-                                            checked={value === 'webDesign2'}
                                             value="webDesign2"
                                             name="web-design-radio"
                                         />
@@ -110,7 +108,6 @@ const Step3Page = () => {
                                         <RadioButton
                                             // handleChange={handleChange}
                                             control={control}
-                                            checked={value === 'webDesign3'}
                                             value="webDesign3"
                                             name="web-design-radio"
                                         />
@@ -126,7 +123,6 @@ const Step3Page = () => {
                                         <RadioButton
                                             // handleChange={handleChange}
                                             control={control}
-                                            checked={value === 'webDesign4'}
                                             value="webDesign4"
                                             name="web-design-radio"
                                         />
