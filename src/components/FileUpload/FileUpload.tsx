@@ -6,6 +6,16 @@ import { Controller } from 'react-hook-form';
 import { ChangeEvent, useState, useEffect } from 'react';
 import { TypeOf } from 'yup';
 
+type fileType = {
+    selectedFile: object;
+    fileName: string;
+    fileSize: number;
+};
+
+// interface acceptedFiles {
+//     acceptedFiles: fileType[];
+// }
+
 interface IFile {
     fileName: string;
     fileSize: number;
@@ -14,8 +24,8 @@ interface IFile {
 interface IFileUpload {
     name: string;
     control: any;
-    acceptedFiles?: [];
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    acceptedFiles?: fileType[] | null;
+    handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FileUpload: FC<IFileUpload> = ({name, control, acceptedFiles, handleChange}) => {
@@ -31,21 +41,21 @@ const FileUpload: FC<IFileUpload> = ({name, control, acceptedFiles, handleChange
     return (
         <div className={style.upLoadBox}>
             <img src={upload} alt="upload files icon" />
-            {acceptedFiles.length != 0 && (
+            {acceptedFiles?.length != 0 && (
                 <p className={style.upLoadBox__paragraph}>
                     ( File accepted: pdf. doc/ docx -<br />
                     Max file size : 150kb for demo limit )
                 </p>
             )}
-            {acceptedFiles.length != 0 &&
-                acceptedFiles.map((file) => {
+            {acceptedFiles?.length != 0 &&
+                acceptedFiles?.map((file) => {
                     return (
-                        <ul key={file}>
+                        <ul key={file.fileName}>
                             <li
-                                key={file}
+                                key={file.fileName}
                                 className={style.upLoadBox__fileList}
                             >
-                                {file}
+                                {file.fileName}
                             </li>
                         </ul>
                     );
@@ -55,6 +65,7 @@ const FileUpload: FC<IFileUpload> = ({name, control, acceptedFiles, handleChange
                 control={control}
                 render={({ field }) => (
                     <input
+                        {...field}
                         type="file"
                         accept=".doc, .docx, .pdf"
                         onChange={handleChange}

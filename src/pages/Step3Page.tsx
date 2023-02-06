@@ -38,7 +38,7 @@ const Step3Page = () => {
         <section className={style.section}>
             <img
                 src={navi_3}
-                alt="step 1 image"
+                alt="step 3 image"
                 className={style.section__image}
             />
             <span>Step 3</span>

@@ -32,7 +32,7 @@ const Step4Page = () => {
         control,
         handleSubmit,
         formState: { errors }
-    } = useForm<FormInput>({
+    } = useForm<CustomerInfo>({
         defaultValues: {
             firstName: '',
             emailAddress: '',
@@ -47,7 +47,7 @@ const Step4Page = () => {
         <section className={style.section}>
             <img
                 src={navi_4}
-                alt="step 1 image"
+                alt="step 4 image"
                 className={style.section__image}
             />
             <span>Step 4</span>

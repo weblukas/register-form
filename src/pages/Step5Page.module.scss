@@ -1,0 +1,25 @@
+@use '../styles' as *;
+
+.section {
+    padding: rem(116) rem(288.5) rem(84) rem(156);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: rem(115) rem(75) rem(107.5) rem(841.5);
+
+    &__heading {
+        grid-column: span 2;
+    }
+
+    &__paragraph {
+        grid-column: span 2;
+    }
+
+    &__image {
+        @include image-position;
+    }
+
+    &__form {
+        grid-column: span 2;
+    }
+
+}

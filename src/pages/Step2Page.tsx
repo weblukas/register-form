@@ -25,6 +25,8 @@ import { DevTool } from '@hookform/devtools';
 import { updateEmailAddress, updateName } from '../app/formSlice';
 import { RootState } from '../app/store';
 
+
+
 const Step2Page = () => {
     const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ const Step2Page = () => {
     const schema = yup.object().shape({
         firstName: yup.string().min(3).max(20).required(),
         emailAddress: yup.string().email().required(),
-        phone: yup.number().max(18),
+        // phone: yup.number().min(5).max(10),
     });
 
     // uploadfile
@@ -80,7 +82,7 @@ const Step2Page = () => {
         PersonAddress: '',
         PersonPhone: '',
         PersonGender: '',
-        // FileUpload: [],
+        fileUpload: [],
     });
 
     //const methods = useForm();  check if you need form Providre and methods
@@ -95,7 +97,7 @@ const Step2Page = () => {
             emailAddress: '',
             phone: '',
             gender: '',
-            // fileUpload: []
+            fileUpload: []
         },
         resolver: yupResolver(schema)
     });
@@ -108,7 +110,7 @@ const Step2Page = () => {
             PersonAddress: emailAddress,
             PersonPhone: phone,
             PersonGender: gender,
-            // PersonFiles: fileUpload,
+            PersonFiles: fileUpload
         });
         dispatch(
             updateName({
@@ -123,8 +125,12 @@ const Step2Page = () => {
     };
 
     const handleClick = () => {
+        console.log(errors)
+        if (!errors) {
+            console.log(errors, 'błędy aaaaaaaaaaaaa')
+            navigate('/step-3');
+        }   
         () => onSubmit;
-        // navigate('/step-3');
     };
 
     console.log(person);
@@ -132,7 +138,7 @@ const Step2Page = () => {
         <section className={style.section}>
             <img
                 src={navi_2}
-                alt="step 1 image"
+                alt="step 2 image"
                 className={style.section__image}
             />
             <span>Step 2</span>
@@ -239,7 +245,7 @@ const Step2Page = () => {
                     </FormControl>
                     {/* </FormProvider> */}
                 </ThemeProvider>
-                {/* <FileUpload name='fileUpload' control={control} handleChange={handleChange} acceptedFiles={acceptedFiles}/> */}
+                <FileUpload name='fileUpload' control={control} handleChange={handleChange} acceptedFiles={acceptedFiles}/>
                 <Button
                     type="submit"
                     variant="primary"
