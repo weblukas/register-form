@@ -37,6 +37,7 @@ const Step1Page = () => {
 
     const handleNext = ()=>{
         () => onSubmit;
+        navigate("/step-2")
     }
 
 // spróbuj zamienić service card title na label i pozycjonować 

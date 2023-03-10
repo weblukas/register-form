@@ -74,7 +74,7 @@ const Step4Page = () => {
             <img src={budgetIcon} alt='' />
             Budget
           </Subheading> */}
-            <form className={style.section__form}>
+            <form className={style.form}>
                 <ThemeProvider theme={step4Themeform}>
                     <CustomInput
                         select
@@ -119,12 +119,12 @@ const Step4Page = () => {
                         fontSize="large"
                         fontWeight="weight700"
                         color="grey300"
-                        className={style.section__subheading}
+                        className={style['form__subheading--checkbox']}
                     >
                         Optimization and Accessibility
                     </Subheading>
-                        <ThemeProvider theme={checkboxTheme}>
-                    <FormGroup row={true} className={style.checkboxGroup}>
+                    <ThemeProvider theme={checkboxTheme}>
+                        <FormGroup row={true} className={style.checkboxGroup}>
                             <CustomCheckbox
                                 onChange={() => console.log('pap')}
                                 name="semantic-coding"
@@ -149,8 +149,8 @@ const Step4Page = () => {
                                 label="Mobile Design"
                                 control={control}
                             />
-                    </FormGroup>
-                        </ThemeProvider>
+                        </FormGroup>
+                    </ThemeProvider>
                     <CustomInput
                         control={control}
                         name="notes"
@@ -159,17 +159,18 @@ const Step4Page = () => {
                         aria-describedby="write some note"
                         rows={5}
                         placeholder="Hi ciestosolution, I noticed your profile and would like to offer you my project.
-We can discuss any details over chat."
+                                    We can discuss any details over chat."
                         sx={{ mt: '3rem' }}
                         src={msgIcon}
                         alt=""
                         className={cn(style.label__icon)}
-                    ></CustomInput>
-                    <HorizontalDivider />
+                    />
+                    <HorizontalDivider className={style.form__divider} />
                     <Button
                         size="small"
                         variant="primary"
                         handleClick={() => navigate('/step-5')}
+                        className={style.form__button}
                     >
                         Next
                     </Button>

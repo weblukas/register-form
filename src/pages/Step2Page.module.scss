@@ -19,13 +19,21 @@
         grid-column: span 2;
         margin: 0;
     }
+
 }
 
 .form {
     grid-column: span 2;
-    margin-top: rem(47.5);
-
+    
+    &__divider {
+       margin-top: rem(46); 
+    }
+    
     &__button {
-        display: block;
+        width: rem(181);
+        height: rem(64);
+        margin-top: rem(49);
+        margin-left: calc(100% - 181px);
+        
     }
 }

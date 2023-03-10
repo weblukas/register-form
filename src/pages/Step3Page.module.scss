@@ -24,12 +24,27 @@
 .form {
     grid-column: span 2;
 
+    &__subheading--input {
+        margin-top: rem(43);
+    }
 
+    &__subheading--textarea {
+        margin-top: rem(36);
+    }
+
+    &__divider {
+        margin-top: rem(56.5);
+    }
     &__button {
         display: flex;
         justify-content: space-around;
         align-items: center;
         grid-column: 2/3;
+        font-weight: 500;
+        font-size: rem(21.73);
+        line-height: rem(31.4);
+        padding: 18px 15px;
+
     }
     
     &__button_backward {
@@ -37,6 +52,11 @@
     }
 
 }
+
+.label__icon {
+    margin-right: 16px;
+}
+
 
 .button__wrapper {
     display: flex;

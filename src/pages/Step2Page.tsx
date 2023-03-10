@@ -13,7 +13,7 @@ import Heading from '../components/Heading/Heading';
 import style from './Step2Page.module.scss';
 import Paragraph from '../components/Paragraph/Paragraph';
 import { radioTheme, inputTheme } from '../mui_themes';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import FileUpload from '../components/FileUpload/FileUpload';
 import navi_2 from '../assets/navi_2.png';
 import * as yup from 'yup';
@@ -24,6 +24,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { DevTool } from '@hookform/devtools';
 import { updateEmailAddress, updateName } from '../app/formSlice';
 import { RootState } from '../app/store';
+import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 
 
 
@@ -167,7 +168,6 @@ const Step2Page = () => {
                 <ThemeProvider theme={inputTheme}>
                     <CustomInput
                         placeholder="First and last name"
-                        sx={{ mb: '14.5px' }}
                         control={control}
                         name="firstName"
                         error={!!errors.firstName}
@@ -178,7 +178,6 @@ const Step2Page = () => {
 
                     <CustomInput
                         placeholder="Phone"
-                        sx={{ mb: '14.5px' }}
                         control={control}
                         name="phone"
                         error={!!errors.phone}
@@ -186,7 +185,6 @@ const Step2Page = () => {
                     />
                     <CustomInput
                         placeholder="email"
-                        sx={{ mb: '14.5px' }}
                         control={control}
                         name="emailAddress"
                         error={!!errors.emailAddress}
@@ -246,6 +244,7 @@ const Step2Page = () => {
                     {/* </FormProvider> */}
                 </ThemeProvider>
                 <FileUpload name='fileUpload' control={control} handleChange={handleChange} acceptedFiles={acceptedFiles}/>
+                <HorizontalDivider className={style.form__divider}/>
                 <Button
                     type="submit"
                     variant="primary"
@@ -255,7 +254,6 @@ const Step2Page = () => {
                 >
                     Next
                 </Button>
-                {/* <button type="submit">press</button> */}
             </form>
             <DevTool control={control} />
         </section>

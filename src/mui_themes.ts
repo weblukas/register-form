@@ -1,50 +1,48 @@
 import { createTheme } from '@mui/material/styles';
 
-
 export const theme = createTheme({
-    status: { danger: '#e53e3e',  },
+    status: { danger: '#e53e3e' },
     palette: {
-    primary: {
-      main: '#1760a5',
-      light: 'skyblue',
-    },
-    secondary: { main: '#15c630' },
-    otherColor: { main: '#999' },
-  },
+        primary: {
+            main: '#1760a5',
+            light: 'skyblue'
+        },
+        secondary: { main: '#15c630' },
+        otherColor: { main: '#999' }
+    }
 });
 
-  export const step1RadioTheme = createTheme({
-        components: {
-            MuiRadio: {
-                styleOverrides: {
-                    root: {
-                        position: 'absolute',
-                        top: '13px',
-                        right: '17px',
-                        color: '#E1E1E1'
-                    }
+export const step1RadioTheme = createTheme({
+    components: {
+        MuiRadio: {
+            styleOverrides: {
+                root: {
+                    position: 'absolute',
+                    top: '13px',
+                    right: '17px',
+                    color: '#E1E1E1'
                 }
-            },
-            MuiFormGroup: {
-                styleOverrides: {
-                    root: {
-                        justifyContent: 'space-between',
-                    }
+            }
+        },
+        MuiFormGroup: {
+            styleOverrides: {
+                root: {
+                    justifyContent: 'space-between'
                 }
             }
         }
-    });
+    }
+});
 export const fontTheme = createTheme({
     components: {
         MuiTypography: {
             defaultProps: {
                 fontFamily: 'Jost',
-                fontWeight: 600,
+                fontWeight: 600
             }
         }
     }
 });
-
 
 export const radioTheme = createTheme({
     components: {
@@ -63,40 +61,52 @@ export const radioTheme = createTheme({
                     color: '#6684F2'
                 }
             }
-        },
-    }});
-    
-    export const inputTheme = createTheme({
-        components: {
+        }
+    }
+});
+
+export const inputTheme = createTheme({
+    components: {
         MuiOutlinedInput: {
             styleOverrides: {
-              root: {
-                height: 73,
-                border: '1px solid #EDEDED',
+                root: {
+                    height: 67,
+                    border: '1px solid #EDEDED',
 
-                "&.Mui-focused": {
-                    border: " 1px solid red",
-                    color: 'red',
-
+                    '&.Mui-focused': {
+                        border: ' 1px solid red',
+                        color: 'red'
+                    }
                 }
-              }
             }
-          }
+        }
+    }
+});
 
-}})
-
-export const formControlLabelTheme = createTheme({
+export const step3formTheme = createTheme({
     components: {
         MuiFormControlLabel: {
             styleOverrides: {
                 root: {
                     width: 743,
-                    height: 68,
+                    height: 67,
                     border: '1px solid #dfdfdf',
                     marginTop: 19.5,
                     display: 'flex',
                     alignItems: 'center',
                     paddingLeft: 34
+                }
+            }
+        },
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    fontFamily: 'Jost',
+                    fontSize: 23,
+                    fontWeight: '700',
+                    color: '#5F5F63',
+                    marginBottom: 14,
+                    marginTop: 31
                 }
             }
         }
@@ -105,65 +115,60 @@ export const formControlLabelTheme = createTheme({
 
 export const step4Themeform = createTheme({
     components: {
-       MuiFormLabel: {
-        styleOverrides: {
-            root: {
-                fontFamily: 'Jost',
-                fontSize: 23,
-                fontWeight: '700',
-                color: '#5F5F63',
-                marginBottom: 12,
-                
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    fontFamily: 'Jost',
+                    fontSize: 23,
+                    fontWeight: '700',
+                    color: '#5F5F63',
+                    marginBottom: 14
+                }
             }
-        }
-       },
-       MuiOutlinedInput: {
-        styleOverrides: {
-            root: {
-                height: 73,
-                border: '1px solid #EDEDED',
-                 "&.Mui-hover": {
-                    border: "1px solid red",
-                    borderWidth: 2,
-                    color: 'red',
-
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    border: '1px solid #EDEDED',
+                    '&.Mui-hover': {
+                        border: '1px solid red',
+                        borderWidth: 2,
+                        color: 'red'
+                    }
+                }
+            }
+        },
+        MuiSelect: {
+            styleOverrides: {
+                select: {
+                    fontSize: 18,
+                    color: '#959595'
+                }
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    fontSize: 18,
+                    color: '#959595'
                 }
             }
         }
-       }, 
-       MuiSelect: {
-        styleOverrides: {
-            select: {
-               fontSize: 18,
-                color: '#959595',  
-            }
-        }
-       },
-       MuiMenuItem: {
-        styleOverrides: {
-            root: {
-                fontSize: 18,
-                color: '#959595',
-            }
-        }
-       } 
     }
-
-})
+});
 
 export const checkboxTheme = createTheme({
     palette: {
         primary: {
-            main: '#6B59D3',
+            main: '#6B59D3'
         },
-        otherColor: { main: '#e31313' },
+        otherColor: { main: '#e31313' }
     },
     components: {
         MuiFormControl: {
             styleOverrides: {
                 root: {
-                    width: 245,
-                    
+                    width: 245
                 }
             }
         },
@@ -177,8 +182,7 @@ export const checkboxTheme = createTheme({
         MuiFormControlLabel: {
             styleOverrides: {
                 root: {
-                    marginLeft: 0,
-                    
+                    marginLeft: 0
                 }
             }
         },
@@ -189,7 +193,6 @@ export const checkboxTheme = createTheme({
                 }
             }
         }
-         
     }
 });
 
@@ -197,4 +200,3 @@ export const checkboxTheme = createTheme({
 //             borderColor: "#C52328"
 //             borderWidth: "2px"
 //         }
-

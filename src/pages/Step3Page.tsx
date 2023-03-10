@@ -19,7 +19,7 @@ import rightArrow from '../assets/rightArrow.png';
 import leftArrow from '../assets/leftArrow.png';
 import msgIcon from '../assets/msgIcon.png';
 import { ThemeProvider } from '@mui/material/styles';
-import { formControlLabelTheme } from '../mui_themes';
+import { step3formTheme } from '../mui_themes';
 import Subheading from '../components/Subheading/Subheading';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 import Button from '../components/Button/Button';
@@ -31,7 +31,9 @@ const Step3Page = () => {
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value);
     };
-    const handleClick = () => {};
+    const handleClick = () => {
+        navigate('/step-4')
+    };
     const { control, handleSubmit } = useForm();
 
     return (
@@ -62,7 +64,7 @@ const Step3Page = () => {
                 lucilius pertinacia eu vel.
             </Paragraph>
             <form className={style.form}>
-                <ThemeProvider theme={formControlLabelTheme}>
+                <ThemeProvider theme={step3formTheme}>
                     <FormControl fullWidth>
                         <RadioGroup
                             aria-labelledby="web design group"
@@ -136,6 +138,7 @@ const Step3Page = () => {
                             fontSize="small"
                             fontWeight="weight400"
                             color="grey400"
+                            className={style['form__subheading--input']}
                         >
                             I want to browse projects in the following
                             languages:
@@ -147,6 +150,13 @@ const Step3Page = () => {
                             label="Languages"
                             aria-describedby="required support"
                             defaultValue={languages[0].value}
+                            sx={{
+                                '& .MuiInputLabel-outlined': {
+                                    margin: 0,
+                                    fontSize: 16,
+                                    fontWeight: 400,
+                                }
+                            }}
                         >
                             {languages.map((language) => (
                                 <MenuItem
@@ -157,17 +167,22 @@ const Step3Page = () => {
                                 </MenuItem>
                             ))}
                         </CustomInput>
-                        <Subheading
+                        {/* <Subheading
                             fontSize="small"
                             fontWeight="weight400"
                             color="dark"
+                            className={style['form__subheading--textarea']}
                         >
                             <img src={msgIcon} alt="message icon" />
                             Write Somthing note
-                        </Subheading>
+                        </Subheading> */}
                         <CustomInput
                             control={control}
                             name="notes"
+                            outsideLabel="Write Some note"
+                            src={msgIcon}
+                            alt=""
+                            className={cn(style.label__icon)}
                             multiline
                             aria-describedby="write some note"
                             rows={5}
@@ -175,7 +190,7 @@ const Step3Page = () => {
 We can discuss any details over chat."
                         />
                     </FormControl>
-                    <HorizontalDivider />
+                    <HorizontalDivider className={style.form__divider} />
                     <div className={style.button__wrapper}>
                         <Button
                             variant="secondary"
