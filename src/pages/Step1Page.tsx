@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Heading from '../components/Heading/Heading';
 import ServiceCard from '../components/ServiceCard/ServiceCard';
 import style from './Step1Page.module.scss';
@@ -16,31 +16,39 @@ import Subheading from '../components/Subheading/Subheading';
 import { step1RadioTheme } from '../mui_themes';
 
 import RadioGroup from '@mui/material/RadioGroup';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import { RootState } from '../app/store';
+import { chooseService } from '../app/form1Slice';
 
 const Step1Page = () => {
     const navigate = useNavigate();
 
-  
-
-
+    /////////toolkit////////
+    
+        const dispatch = useDispatch();
+        const currentService = useSelector(
+            (state: RootState) => state.serviceData
+        );
+        // console.log(currentService)
     // hook fom
 
     const { control, handleSubmit } = useForm<Service>({
-        defaultValues: {service: ''}
+        defaultValues: { service: '' }
     });
-    
-    const onSubmit: SubmitHandler<Service> = (data: Service)=>{
-        console.log(data)
-    }
 
-    const handleNext = ()=>{
+    const onSubmit: SubmitHandler<Service> = (data: Service) => {
+        console.log(data);
+    };
+
+    const handleNext = () => {
         () => onSubmit;
-        navigate("/step-2")
-    }
+        dispatch(chooseService)
+        // navigate("/step-2")
+    };
 
-// spróbuj zamienić service card title na label i pozycjonować 
+ 
+    // spróbuj zamienić service card title na label i pozycjonować
 
     // const [value, setValue] = useState('');
     // const handleChange = (e: React.FormEvent<HTMLInputElement>) => {

@@ -1,80 +1,82 @@
-import React, { useState, ChangeEvent } from 'react';
-import Button from '../components/Button/Button';
+import { useState, ChangeEvent } from 'react';
+import style from './Step2Page.module.scss';
 import { useNavigate } from 'react-router-dom';
+import navi_2 from '../assets/navi_2.png';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import Button from '../components/Button/Button';
+import RadioButton from '../components/RadioButton/RadioButton';
+import ProgressBar from '../components/ProgressBar/ProgressBar';
+import Heading from '../components/Heading/Heading';
 import CustomInput from '../components/CustomInput/CustomInput';
+import Paragraph from '../components/Paragraph/Paragraph';
+import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
+
 import { ThemeProvider } from '@mui/material/styles';
+import { radioTheme, inputTheme } from '../mui_themes';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
-import RadioButton from '../components/RadioButton/RadioButton';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
-import Heading from '../components/Heading/Heading';
-import style from './Step2Page.module.scss';
-import Paragraph from '../components/Paragraph/Paragraph';
-import { radioTheme, inputTheme } from '../mui_themes';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import FileUpload from '../components/FileUpload/FileUpload';
-import navi_2 from '../assets/navi_2.png';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useSelector, useDispatch } from 'react-redux';
-
-import { DevTool } from '@hookform/devtools';
-import { updateEmailAddress, updateName } from '../app/formSlice';
+import { updateEmailAddress, updateName } from '../app/form2Slice';
 import { RootState } from '../app/store';
-import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
-
-
 
 const Step2Page = () => {
     const navigate = useNavigate();
 
     // toolkit
     const dispatch = useDispatch();
+
+    // consol log global state
     const currentState = useSelector(
-        (state: RootState) => state.form.firstAndLastName
+        (state: RootState) => state.personInfo.firstAndLastName
     );
     console.log(currentState, 'to twoje imię');
+    
+    
+    
     const schema = yup.object().shape({
         firstName: yup.string().min(3).max(20).required(),
-        emailAddress: yup.string().email().required(),
+        emailAddress: yup.string().email().required()
         // phone: yup.number().min(5).max(10),
     });
 
     // uploadfile
-       const [uploadedFile, setUploadedFile] = useState<File>();
-       const [acceptedFiles, setAcceptedFiles] = useState([
-           {
-               selectedFile: {},
-               fileName: '',
-               fileSize: 0
-           }
-       ]);
+    const [uploadedFile, setUploadedFile] = useState<File>();
+    const [acceptedFiles, setAcceptedFiles] = useState([
+        {
+            selectedFile: {},
+            fileName: '',
+            fileSize: 0
+        }
+    ]);
 
-       const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-           const files = e.target.files;
-           // const files = e.target.files?[0]; try to refactor
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        // const files = e.target.files?[0]; try to refactor
 
-           if (files !== null && files !== undefined) {
-               const fileList = files;
-               const selectedFile = fileList[0];
-               const fileName = fileList[0].name;
-               const fileSize = fileList[0].size;
-               setUploadedFile(selectedFile);
-               setAcceptedFiles([
-                   ...acceptedFiles,
-                   {
-                       selectedFile,
-                       fileName,
-                       fileSize
-                   }
-               ]);
-           }
-       };
-
-
+        if (files !== null && files !== undefined) {
+            const fileList = files;
+            const selectedFile = fileList[0];
+            const fileName = fileList[0].name;
+            const fileSize = fileList[0].size;
+            setUploadedFile(selectedFile);
+            setAcceptedFiles([
+                ...acceptedFiles,
+                {
+                    selectedFile,
+                    fileName,
+                    fileSize
+                }
+            ]);
+        }
+    };
 
     // form Hook ////
 
@@ -83,7 +85,7 @@ const Step2Page = () => {
         PersonAddress: '',
         PersonPhone: '',
         PersonGender: '',
-        fileUpload: [],
+        fileUpload: []
     });
 
     //const methods = useForm();  check if you need form Providre and methods
@@ -105,7 +107,7 @@ const Step2Page = () => {
 
     const onSubmit: SubmitHandler<CustomerInfo> = (data: CustomerInfo) => {
         console.log(data);
-        const { firstName, emailAddress, phone, gender, } = data;
+        const { firstName, emailAddress, phone, gender } = data;
         setPerson({
             PersonName: firstName,
             PersonAddress: emailAddress,
@@ -126,11 +128,11 @@ const Step2Page = () => {
     };
 
     const handleClick = () => {
-        console.log(errors)
+        console.log(errors);
         if (!errors) {
-            console.log(errors, 'błędy aaaaaaaaaaaaa')
+            console.log(errors, 'błędy aaaaaaaaaaaaa');
             navigate('/step-3');
-        }   
+        }
         () => onSubmit;
     };
 
@@ -243,8 +245,13 @@ const Step2Page = () => {
                     </FormControl>
                     {/* </FormProvider> */}
                 </ThemeProvider>
-                <FileUpload name='fileUpload' control={control} handleChange={handleChange} acceptedFiles={acceptedFiles}/>
-                <HorizontalDivider className={style.form__divider}/>
+                <FileUpload
+                    name="fileUpload"
+                    control={control}
+                    handleChange={handleChange}
+                    acceptedFiles={acceptedFiles}
+                />
+                <HorizontalDivider className={style.form__divider} />
                 <Button
                     type="submit"
                     variant="primary"

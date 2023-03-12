@@ -3,9 +3,13 @@
         emailAddress: string;
         phone: string;
         gender: string;
-        fileUpload: [];
+        fileUpload: string[];
     }
 
   type Service = {
     service: string;
+  }
+
+  type PersonFiles = {
+
   }

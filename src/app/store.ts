@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import  formReducer  from "./formSlice";
+import serviceDataReducer from './form1Slice'
+import  personDataReducer  from "./form2Slice";
 
 export const store = configureStore({
     reducer: {
-        form: formReducer
+        personInfo: personDataReducer,
+        serviceData: serviceDataReducer,
     }
 })
 

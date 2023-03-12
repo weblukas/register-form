@@ -20,7 +20,6 @@ import leftArrow from '../assets/leftArrow.png';
 import msgIcon from '../assets/msgIcon.png';
 import { ThemeProvider } from '@mui/material/styles';
 import { step3formTheme } from '../mui_themes';
-import Subheading from '../components/Subheading/Subheading';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 import Button from '../components/Button/Button';
 
@@ -32,7 +31,7 @@ const Step3Page = () => {
         setValue(e.currentTarget.value);
     };
     const handleClick = () => {
-        navigate('/step-4')
+        navigate('/step-4');
     };
     const { control, handleSubmit } = useForm();
 
@@ -134,27 +133,27 @@ const Step3Page = () => {
                                 />
                             </div>
                         </RadioGroup>
-                        <Subheading
-                            fontSize="small"
-                            fontWeight="weight400"
-                            color="grey400"
-                            className={style['form__subheading--input']}
-                        >
-                            I want to browse projects in the following
-                            languages:
-                        </Subheading>
                         <CustomInput
                             control={control}
                             name="languages"
                             select
                             label="Languages"
-                            aria-describedby="required support"
+                            outsideLabel="I want to browse projects in the following
+                            languages:"
+                            aria-describedby="select a language to browse projects"
                             defaultValue={languages[0].value}
                             sx={{
                                 '& .MuiInputLabel-outlined': {
                                     margin: 0,
                                     fontSize: 16,
                                     fontWeight: 400,
+                                    height: 80
+                                },
+                                '& .MuiFormLabel-root': {
+                                    fontFamily: 'Jost',
+                                    fontWeight: 400,
+                                    fontSize: 18,
+                                    lineHeight: '26px'
                                 }
                             }}
                         >
@@ -167,15 +166,6 @@ const Step3Page = () => {
                                 </MenuItem>
                             ))}
                         </CustomInput>
-                        {/* <Subheading
-                            fontSize="small"
-                            fontWeight="weight400"
-                            color="dark"
-                            className={style['form__subheading--textarea']}
-                        >
-                            <img src={msgIcon} alt="message icon" />
-                            Write Somthing note
-                        </Subheading> */}
                         <CustomInput
                             control={control}
                             name="notes"
@@ -198,7 +188,7 @@ We can discuss any details over chat."
                             handleClick={handleClick}
                             className={cn(
                                 style.form__button,
-                                style.form__button_backward
+                                style['form__button--backward']
                             )}
                         >
                             <img src={leftArrow} alt="sdf" />
@@ -208,10 +198,7 @@ We can discuss any details over chat."
                             variant="primary"
                             size="large"
                             handleClick={handleClick}
-                            className={cn(
-                                style.form__button,
-                                style.form__button_forward
-                            )}
+                            className={style.form__button}
                         >
                             Forward
                             <img src={rightArrow} alt="" />
