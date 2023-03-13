@@ -3,7 +3,7 @@
         emailAddress: string;
         phone: string;
         gender: string;
-        fileUpload: string[];
+        fileUpload: File[];
     }
 
   type Service = {

@@ -8,18 +8,28 @@ import plan1 from '../assets/plan1.png';
 import plan2 from '../assets/plan2.png';
 import DatePicker from '../components/DatePicker/DatePicker';
 import PlanCard from '../components/PlanCard/PlanCard';
-import PlanCardRadio from '../components/PlanCardRadio/PlanCardRadio';
 import Subheading from '../components/Subheading/Subheading';
 import HorizontalDivider from '../components/HorizontalDivider/HorizontalDivider';
 import Button from '../components/Button/Button';
 import CustomInput from '../components/CustomInput/CustomInput';
 import { useForm } from 'react-hook-form';
+import { RadioGroup } from '@mui/material';
+import RadioButton from '../components/RadioButton/RadioButton';
 
 
 const Step5Page = () => {
     const [selectedValue, setSelectedValue] = useState('unlimited-plan');
     const handleRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(e.target.value);
+    };
+
+    const radioPlanStyle = {
+        position: 'absolute',
+        top: '16px',
+        left: '29px',
+        color: '#6B59D3',
+        width: '37px',
+        height: '37px'
     };
 
     const submitForm = ()=>{}
@@ -60,58 +70,63 @@ const Step5Page = () => {
             </Paragraph>
             <form className={style.section__form}>
                 <DatePicker />
-                <PlanCard img={plan1}>
-                    <PlanCardRadio
-                        checked={selectedValue === 'unlimited-plan'}
-                        handleChange={handleRadio}
-                        value="unlimited-plan"
-                        name="radio-buttons"
-                        //   inputProps={{ 'aria-label': 'unlimited-plan' }}
-                    />
-                    <Subheading
-                        fontSize="xlarge"
-                        fontWeight="weight800"
-                        color="grey700"
-                    >
-                        Unlimited plan
-                    </Subheading>
-                    {/* paragraph do poprawy fontWeight i color default values
+                <RadioGroup
+                    row
+                    aria-labelledby="plan-radio"
+                    defaultValue="unlimited-plan"
+                    className={style.form__plans}
+                >
+                    <PlanCard img={plan1}>
+                        <RadioButton
+                            name="plan"
+                            value="unlimited-plan"
+                            control={control}
+                            sx={radioPlanStyle}
+                        />
+                        <Subheading
+                            fontSize="xlarge"
+                            fontWeight="weight800"
+                            color="grey700"
+                        >
+                            Unlimited plan
+                        </Subheading>
+                        {/* paragraph do poprawy fontWeight i color default values
                     powinny być ustawione */}
-                    <Paragraph
-                        fontSize="small"
-                        fontWeight="fontWeight400"
-                        color="colorGrey300"
-                    >
-                        Tation argumentum et usu, dicit viderer evertitur te
-                        has. Eu dictas concludaturque usu,
-                    </Paragraph>
-                </PlanCard>
-                <PlanCard img={plan2}>
-                    <PlanCardRadio
-                        checked={selectedValue === 'unlimited-plan'}
-                        handleChange={handleRadio}
-                        value="unlimited-plan"
-                        name="radio-buttons"
-                        //   inputProps={{ 'aria-label': 'unlimited-plan' }}
-                    />
-                    <Subheading
-                        fontSize="xlarge"
-                        fontWeight="weight800"
-                        color="grey700"
-                    >
-                        Limited plan
-                    </Subheading>
-                    {/* paragraph do poprawy fontWeight i color default values
+                        <Paragraph
+                            fontSize="small"
+                            fontWeight="fontWeight400"
+                            color="colorGrey300"
+                        >
+                            Tation argumentum et usu, dicit viderer evertitur te
+                            has. Eu dictas concludaturque usu,
+                        </Paragraph>
+                    </PlanCard>
+                    <PlanCard img={plan2}>
+                        <RadioButton
+                            name="plan"
+                            value="limited-plan"
+                            control={control}
+                            sx={radioPlanStyle}
+                        />
+                        <Subheading
+                            fontSize="xlarge"
+                            fontWeight="weight800"
+                            color="grey700"
+                        >
+                            Limited plan
+                        </Subheading>
+                        {/* paragraph do poprawy fontWeight i color default values
                     powinny być ustawione */}
-                    <Paragraph
-                        fontSize="small"
-                        fontWeight="fontWeight400"
-                        color="colorGrey300"
-                    >
-                        Tation argumentum et usu, dicit viderer evertitur te
-                        has. Eu dictas concludaturque usu,
-                    </Paragraph>
-                </PlanCard>
+                        <Paragraph
+                            fontSize="small"
+                            fontWeight="fontWeight400"
+                            color="colorGrey300"
+                        >
+                            Tation argumentum et usu, dicit viderer evertitur te
+                            has. Eu dictas concludaturque usu,
+                        </Paragraph>
+                    </PlanCard>
+                </RadioGroup>
                 <CustomInput
                     control={control}
                     name="notes"
@@ -121,7 +136,7 @@ const Step5Page = () => {
                     placeholder="write some note"
                     sx={{ mt: '3rem' }}
                 />
-                <HorizontalDivider />
+                <HorizontalDivider className={style.form__divider} />
                 <Button
                     size="small"
                     variant="primary"

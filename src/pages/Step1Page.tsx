@@ -44,7 +44,7 @@ const Step1Page = () => {
     const handleNext = () => {
         () => onSubmit;
         dispatch(chooseService)
-        // navigate("/step-2")
+        navigate("/step-2")
     };
 
  
@@ -98,8 +98,6 @@ const Step1Page = () => {
                                 name="service"
                                 value="corporate-services"
                                 control={control}
-                                // checked={value === 'corporate-services'}
-                                // handleChange={handleChange}
                             />
                         </ServiceCard>
                         <ServiceCard
@@ -111,8 +109,6 @@ const Step1Page = () => {
                                 name="service"
                                 value="freelancing-services"
                                 control={control}
-                                // handleChange={handleChange}
-                                // checked={value === 'freelancing-services'}
                             />
                         </ServiceCard>
                         <ServiceCard

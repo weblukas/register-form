@@ -7,6 +7,7 @@ interface IRadioButton {
     value: string;
     control: any;
     checked?: boolean;
+    sx?: object;
  
 }
 
@@ -15,6 +16,7 @@ const RadioButton: FC<IRadioButton> = ({
     value,
     control,
     checked,
+    sx,
 }) => {
     return (
      
@@ -23,9 +25,10 @@ const RadioButton: FC<IRadioButton> = ({
                 control={control}
                 render={({ field }) => (
                     <Radio
-                        {...field}
-                        value={value}
-                        checked={checked}
+                    {...field}
+                    value={value}
+                    checked={checked}
+                    sx={sx}
                     />
                 )}
             />

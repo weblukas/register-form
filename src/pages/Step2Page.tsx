@@ -113,7 +113,7 @@ const Step2Page = () => {
             PersonAddress: emailAddress,
             PersonPhone: phone,
             PersonGender: gender,
-            PersonFiles: fileUpload
+            PersonFiles: uploadedFile
         });
         dispatch(
             updateName({
